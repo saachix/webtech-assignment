@@ -6,10 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import model.Student;
+import model.dao.StudentDAO;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.List;
 
 @WebServlet("/students")
 public class StudentServlet extends HttpServlet {
@@ -21,46 +22,31 @@ public class StudentServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
-        try {
-            Connection conn = DBConnection.getConnection();
+        StudentDAO studentDAO = new StudentDAO();
 
-            Statement stmt = conn.createStatement();
+        List<Student> students = studentDAO.getAllStudents();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+        var out = response.getWriter();
 
-            var out = response.getWriter();
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Students</title>");
+        out.println("</head>");
 
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Students</title>");
-            out.println("</head>");
+        out.println("<body>");
 
-            out.println("<body>");
+        out.println("<h1>Students</h1>");
 
-            out.println("<h1>Students</h1>");
-
-            while (rs.next()) {
-                out.println("<p>");
-                out.println(rs.getInt("student_id") + " - ");
-                out.println(rs.getString("name") + " - ");
-                out.println(rs.getString("email"));
-                out.println("</p>");
-            }
-
-            out.println("</body>");
-            out.println("</html>");
-
-            rs.close();
-            stmt.close();
-            conn.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            response.getWriter().println(
-                    "Database error: " + e.getMessage()
-            );
+        for (Student student : students) {
+            out.println("<p>");
+            out.println(student.getStudentId() + " - ");
+            out.println(student.getName() + " - ");
+            out.println(student.getEmail());
+            out.println("</p>");
         }
+
+        out.println("</body>");
+        out.println("</html>");
     }
 }

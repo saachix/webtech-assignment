@@ -1,7 +1,7 @@
-package dao;
+package model.dao;
 
 import model.Student;
-import util.DBConnection;
+import org.example.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,20 +13,22 @@ public class StudentDAO implements StudentDAOInterface {
 
     @Override
     public Student getStudentById(int studentId) {
-        String sql = "SELECT * FROM student WHERE studentId = ?";
+
+        String sql = "SELECT * FROM students WHERE student_id = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, studentId);
+
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 return new Student(
-                    rs.getInt("studentId"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("password")
+                        rs.getInt("student_id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        null
                 );
             }
 
@@ -38,30 +40,36 @@ public class StudentDAO implements StudentDAOInterface {
     }
 
     @Override
-    public Student login(String email, String password) {
-        String sql = "SELECT * FROM student WHERE email = ? AND password = ?";
+    public List<Student> getAllStudents() {
+
+        List<Student> students = new ArrayList<>();
+
+        String sql = "SELECT * FROM students";
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            ps.setString(1, email);
-            ps.setString(2, password);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return new Student(
-                    rs.getInt("studentId"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("password")
+            while (rs.next()) {
+                Student student = new Student(
+                        rs.getInt("student_id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        null
                 );
+
+                students.add(student);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return students;
+    }
+
+    @Override
+    public Student login(String email, String password) {
         return null;
     }
 }
