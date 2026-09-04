@@ -1,6 +1,7 @@
-package dao;
+package model.dao;
 
 import model.Collaboration;
+
 import java.util.List;
 
 public interface CollaborationDAOInterface {
