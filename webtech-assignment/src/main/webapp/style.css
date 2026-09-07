@@ -1,0 +1,1105 @@
+/* =========================================================
+   CAMPUS COLLAB
+   Cute Student Community Theme
+   ========================================================= */
+
+
+/* -------------------------
+   COLORS
+   ------------------------- */
+
+:root {
+    --baby-blue: #b9e3f5;
+    --light-blue: #eaf7fc;
+    --blue: #5caed3;
+    --dark-blue: #286582;
+
+    --navy: #29404d;
+    --text: #354955;
+    --muted: #71838d;
+
+    --white: #ffffff;
+    --off-white: #fcfdfd;
+
+    --line: #d7e9f0;
+
+    --green: #6daa89;
+    --green-bg: #edf7f1;
+
+    --yellow: #fff3bd;
+    --pink: #ffe4ed;
+
+    --shadow: 0 3px 10px rgba(48, 91, 109, 0.07);
+}
+
+
+/* -------------------------
+   RESET
+   ------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    background: var(--off-white);
+
+    color: var(--text);
+
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* -------------------------
+   GENERAL
+   ------------------------- */
+
+.container {
+    width: 90%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 65px 0;
+}
+
+
+/* -------------------------
+   NAVBAR
+   ------------------------- */
+
+.navbar {
+    background: white;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.navbar-container {
+    width: 90%;
+    max-width: 1080px;
+
+    min-height: 68px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+
+    color: var(--navy);
+}
+
+.logo-mark {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--baby-blue);
+
+    border: 2px solid #a0d4e9;
+
+    border-radius: 8px;
+
+    color: var(--dark-blue);
+
+    font-size: 0.67rem;
+
+    transform: rotate(-2deg);
+}
+
+.logo-text {
+    color: var(--navy);
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+}
+
+.nav-link {
+    padding: 7px 10px;
+
+    color: var(--muted);
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    border-radius: 6px;
+
+    transition: 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--dark-blue);
+
+    background: var(--light-blue);
+}
+
+.nav-link.active {
+    color: var(--dark-blue);
+}
+
+
+/* NAV ACTIONS */
+
+.nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+/* -------------------------
+   BUTTONS
+   ------------------------- */
+
+.btn {
+    min-height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 15px;
+
+    border-radius: 7px;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* BLUE BUTTON */
+
+.btn-primary {
+    background: var(--blue);
+
+    border: 1px solid var(--blue);
+
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--dark-blue);
+
+    border-color: var(--dark-blue);
+}
+
+
+/* WHITE BUTTON */
+
+.btn-secondary {
+    background: white;
+
+    border: 1px solid #a8d3e4;
+
+    color: var(--dark-blue);
+}
+
+.btn-secondary:hover {
+    background: var(--light-blue);
+}
+
+
+/* GHOST BUTTON */
+
+.btn-ghost {
+    background: transparent;
+
+    color: var(--muted);
+}
+
+.btn-ghost:hover {
+    background: var(--light-blue);
+
+    color: var(--dark-blue);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 80px 0 75px;
+
+    background: var(--light-blue);
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+/*
+   Small decorative circles.
+   They make the page feel less like a
+   generic template.
+*/
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    left: 7%;
+
+    top: 55px;
+
+    background: var(--yellow);
+
+    border-radius: 50%;
+
+    opacity: 0.65;
+
+    transform: rotate(-10deg);
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    right: 9%;
+
+    bottom: 45px;
+
+    background: var(--pink);
+
+    border-radius: 45% 55% 50% 40%;
+
+    opacity: 0.7;
+
+    transform: rotate(15deg);
+}
+
+
+.hero-container {
+    position: relative;
+
+    z-index: 2;
+
+    width: 90%;
+
+    max-width: 1080px;
+
+    margin: 0 auto;
+
+    text-align: left;
+}
+
+
+/* HERO BADGE */
+
+.hero-badge {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    padding: 5px 11px;
+
+    background: white;
+
+    border: 1px solid #c8e4ee;
+
+    border-radius: 6px;
+
+    color: var(--dark-blue);
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    transform: rotate(-1deg);
+}
+
+
+/* HERO TITLE */
+
+.hero-title {
+    max-width: 680px;
+
+    margin-bottom: 17px;
+
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    font-size: clamp(2.7rem, 6vw, 4.7rem);
+
+    line-height: 1.02;
+
+    letter-spacing: -0.045em;
+
+    font-weight: 800;
+
+    color: var(--navy);
+}
+
+.hero-title-highlight {
+    color: var(--dark-blue);
+
+    position: relative;
+}
+
+
+/*
+   Little underline under "collaborator."
+*/
+
+.hero-title-highlight::after {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+
+    bottom: -5px;
+
+    width: 92%;
+
+    height: 4px;
+
+    background: var(--baby-blue);
+
+    border-radius: 50%;
+
+    transform: rotate(-1deg);
+}
+
+
+/* HERO TEXT */
+
+.hero-description {
+    max-width: 600px;
+
+    margin-bottom: 25px;
+
+    color: #607783;
+
+    font-size: 0.95rem;
+
+    line-height: 1.75;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-actions {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+   ========================================================= */
+
+.section-header {
+    max-width: 620px;
+
+    margin-bottom: 35px;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 9px;
+
+    padding: 4px 9px;
+
+    background: var(--light-blue);
+
+    border: 1px solid #cfe8f1;
+
+    border-radius: 5px;
+
+    color: var(--dark-blue);
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+}
+
+.section-title {
+    margin-bottom: 8px;
+
+    font-size: 2rem;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+
+    color: var(--navy);
+}
+
+.section-description {
+    color: var(--muted);
+
+    font-size: 0.88rem;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+.how-it-works {
+    background: white;
+}
+
+
+/*
+   Instead of four identical "AI cards",
+   we use a simple row.
+*/
+
+.steps-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 0;
+}
+
+.step-card {
+    min-height: 190px;
+
+    padding: 20px 22px;
+
+    background: white;
+
+    border-top: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
+
+    border-right: 1px solid var(--line);
+
+    transition: 0.2s ease;
+}
+
+.step-card:first-child {
+    border-left: 1px solid var(--line);
+
+    border-radius: 10px 0 0 10px;
+}
+
+.step-card:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.step-card:hover {
+    background: var(--light-blue);
+
+    transform: translateY(-2px);
+}
+
+
+/* NUMBER */
+
+.step-number {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    background: var(--baby-blue);
+
+    border-radius: 7px;
+
+    color: var(--dark-blue);
+
+    font-size: 0.68rem;
+
+    font-weight: 800;
+
+    transform: rotate(-2deg);
+}
+
+
+/* STEP TEXT */
+
+.step-card h3 {
+    margin-bottom: 7px;
+
+    font-size: 1rem;
+
+    color: var(--navy);
+}
+
+.step-card p {
+    color: var(--muted);
+
+    font-size: 0.82rem;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   COLLABORATIONS
+   ========================================================= */
+
+.featured {
+    background: #f7fbfd;
+}
+
+
+/*
+   Left aligned section instead of
+   perfectly centered AI layout.
+*/
+
+.featured .section-header {
+    margin-left: 0;
+}
+
+
+/* COLLAB GRID */
+
+.collaboration-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+/* COLLAB CARD */
+
+.collaboration-card {
+    position: relative;
+
+    padding: 23px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 10px;
+
+    box-shadow: none;
+
+    transition: 0.2s ease;
+}
+
+.collaboration-card:nth-child(1) {
+    border-top: 4px solid var(--baby-blue);
+}
+
+.collaboration-card:nth-child(2) {
+    border-top: 4px solid #d8c5ef;
+}
+
+.collaboration-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* TOP */
+
+.collaboration-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+
+/* ICON */
+
+.collaboration-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--light-blue);
+
+    border: 1px solid #cfe8f1;
+
+    border-radius: 8px;
+
+    color: var(--dark-blue);
+
+    font-size: 1rem;
+}
+
+
+/* STATUS */
+
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 4px 8px;
+
+    background: var(--green-bg);
+
+    border-radius: 5px;
+
+    color: #4f896b;
+
+    font-size: 0.68rem;
+
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+
+    background: var(--green);
+
+    border-radius: 50%;
+}
+
+
+/* COLLAB TITLE */
+
+.collaboration-card h3 {
+    margin-bottom: 6px;
+
+    font-size: 1.18rem;
+
+    color: var(--navy);
+}
+
+.collaboration-description {
+    margin-bottom: 15px;
+
+    color: var(--muted);
+
+    font-size: 0.84rem;
+
+    line-height: 1.65;
+}
+
+
+/* CATEGORY */
+
+.category-tag {
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    background: #f5f7f8;
+
+    border: 1px solid #e0eaee;
+
+    border-radius: 5px;
+
+    color: #657984;
+
+    font-size: 0.68rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta {
+    padding: 60px 0;
+
+    background: white;
+}
+
+
+/*
+   Instead of the giant dark AI CTA,
+   this is more like a notice board.
+*/
+
+.cta-box {
+    position: relative;
+
+    padding: 35px 38px;
+
+    background: var(--baby-blue);
+
+    border: 1px solid #9fcfe5;
+
+    border-radius: 10px;
+
+    transform: rotate(-0.2deg);
+}
+
+.cta-content {
+    max-width: 680px;
+}
+
+.cta-box h2 {
+    margin-bottom: 9px;
+
+    font-size: 2rem;
+
+    line-height: 1.2;
+
+    color: #28556a;
+}
+
+.cta-box p {
+    max-width: 580px;
+
+    margin-bottom: 18px;
+
+    color: #55717e;
+
+    font-size: 0.85rem;
+}
+
+.cta-box .btn-primary {
+    background: white;
+
+    border-color: white;
+
+    color: var(--dark-blue);
+}
+
+.cta-box .btn-primary:hover {
+    background: #f8fcfe;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    padding: 40px 0 18px;
+
+    background: #315462;
+
+    color: white;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr;
+
+    gap: 45px;
+
+    padding-bottom: 30px;
+}
+
+.footer-brand {
+    max-width: 330px;
+}
+
+.footer-brand .logo-text {
+    color: white;
+}
+
+.footer-brand .logo-mark {
+    background: var(--baby-blue);
+
+    border-color: var(--baby-blue);
+
+    color: var(--dark-blue);
+}
+
+.footer-description {
+    margin-top: 12px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 0.78rem;
+
+    line-height: 1.7;
+}
+
+.footer-column h4 {
+    margin-bottom: 11px;
+
+    font-size: 0.8rem;
+}
+
+.footer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    list-style: none;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 0.76rem;
+
+    transition: 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+
+/* FOOTER BOTTOM */
+
+.footer-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-top: 16px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 0.68rem;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 38px;
+    height: 38px;
+
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 7px;
+
+    color: var(--dark-blue);
+
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .step-card {
+        border: 1px solid var(--line);
+
+        border-radius: 8px !important;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .section {
+        padding: 52px 0;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero::before {
+        width: 55px;
+        height: 55px;
+
+        left: 4%;
+        top: 35px;
+    }
+
+    .hero::after {
+        width: 45px;
+        height: 45px;
+
+        right: 5%;
+        bottom: 30px;
+    }
+
+    .hero-title {
+        font-size: 2.7rem;
+    }
+
+    .hero-description {
+        font-size: 0.86rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .hero-actions .btn {
+        width: auto;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-card {
+        min-height: auto;
+
+        border-radius: 8px !important;
+    }
+
+    .collaboration-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+        padding: 30px 24px;
+    }
+
+    .cta-box h2 {
+        font-size: 1.7rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .logo {
+        font-size: 0.95rem;
+    }
+
+    .hero-title {
+        font-size: 2.45rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .collaboration-card {
+        padding: 20px;
+    }
+}
