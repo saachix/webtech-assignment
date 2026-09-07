@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Collaboration - Campus Collab</title>
+    <title>Apply - Campus Collab</title>
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/style.css">
@@ -54,7 +54,6 @@
         }
 
         .form-group input,
-        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 11px 12px;
@@ -64,17 +63,17 @@
             font-size: 0.85rem;
             color: var(--text);
             background: white;
+            box-sizing: border-box;
         }
 
         .form-group input:focus,
-        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--blue);
         }
 
         .form-group textarea {
-            min-height: 130px;
+            min-height: 150px;
             resize: vertical;
         }
 
@@ -96,7 +95,6 @@
         }
 
         body.dark-mode .form-group input,
-        body.dark-mode .form-group select,
         body.dark-mode .form-group textarea {
             background: #101c22;
             color: #dcecf2;
@@ -109,7 +107,6 @@
         }
 
         body.dark-mode .form-group input:focus,
-        body.dark-mode .form-group select:focus,
         body.dark-mode .form-group textarea:focus {
             border-color: var(--blue);
         }
@@ -157,12 +154,6 @@
                 Browse Collaborations
             </a>
 
-
-            <a href="${pageContext.request.contextPath}/create-collaboration"
-               class="nav-link active">
-                Create Collaboration
-            </a>
-
         </nav>
 
 
@@ -190,7 +181,7 @@
 
 
 <!-- =========================
-     FORM
+     APPLICATION FORM
      ========================= -->
 
 <main>
@@ -203,33 +194,53 @@
 
 
             <h1>
-                Create a Collaboration
+                Apply for Collaboration
             </h1>
 
 
             <p>
-                Have an idea? Tell other students what you're looking for.
+                Tell the creator why you'd be a good fit for this project.
             </p>
 
 
             <form
                     method="post"
-                    action="${pageContext.request.contextPath}/create-collaboration">
+                    action="${pageContext.request.contextPath}/apply">
 
 
-                <!-- CREATOR ID -->
+                <!-- COLLABORATION ID -->
 
                 <div class="form-group">
 
-                    <label for="creatorId">
-                        Creator Student ID
+                    <label for="collabId">
+                        Collaboration ID
                     </label>
 
 
                     <input
                             type="number"
-                            id="creatorId"
-                            name="creatorId"
+                            id="collabId"
+                            name="collabId"
+                            value="<%= request.getAttribute("collabId") %>"
+                            readonly
+                    >
+
+                </div>
+
+
+                <!-- APPLICANT ID -->
+
+                <div class="form-group">
+
+                    <label for="applicantId">
+                        Your Student ID
+                    </label>
+
+
+                    <input
+                            type="number"
+                            id="applicantId"
+                            name="applicantId"
                             min="1"
                             required
                     >
@@ -237,103 +248,19 @@
                 </div>
 
 
-                <!-- TITLE -->
+                <!-- PITCH -->
 
                 <div class="form-group">
 
-                    <label for="title">
-                        Collaboration Title
-                    </label>
-
-
-                    <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            maxlength="255"
-                            placeholder="e.g. Need a Video Editor"
-                            required
-                    >
-
-                </div>
-
-
-                <!-- CATEGORY -->
-
-                <div class="form-group">
-
-                    <label for="category">
-                        Category
-                    </label>
-
-
-                    <select
-                            id="category"
-                            name="category"
-                            required>
-
-                        <option value="">
-                            Select a category
-                        </option>
-
-
-                        <option value="Video Editing">
-                            Video Editing
-                        </option>
-
-
-                        <option value="Podcast">
-                            Podcast
-                        </option>
-
-
-                        <option value="Photography">
-                            Photography
-                        </option>
-
-
-                        <option value="Music">
-                            Music
-                        </option>
-
-
-                        <option value="Design">
-                            Design
-                        </option>
-
-
-                        <option value="Programming">
-                            Programming
-                        </option>
-
-
-                        <option value="Writing">
-                            Writing
-                        </option>
-
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- DESCRIPTION -->
-
-                <div class="form-group">
-
-                    <label for="description">
-                        Description
+                    <label for="pitchText">
+                        Your Pitch
                     </label>
 
 
                     <textarea
-                            id="description"
-                            name="description"
-                            placeholder="Describe your project and the kind of collaborator you're looking for..."
+                            id="pitchText"
+                            name="pitchText"
+                            placeholder="Tell the creator about your skills, experience, and why you're interested..."
                             required
                     ></textarea>
 
@@ -348,7 +275,7 @@
                             type="submit"
                             class="btn btn-primary">
 
-                        Create Collaboration
+                        Submit Application
 
                         <span>
                             →

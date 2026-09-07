@@ -1103,3 +1103,256 @@ button {
         padding: 20px;
     }
 }
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark-mode {
+    --light-blue: #172b35;
+    --baby-blue: #315c70;
+    --blue: #63b6dc;
+    --dark-blue: #8bd0ef;
+
+    --navy: #e7f3f8;
+    --text: #d6e4e9;
+    --muted: #9db0b9;
+
+    --white: #182a33;
+    --off-white: #101c22;
+
+    --line: #2d4652;
+
+    --green: #79bd98;
+    --green-bg: #183328;
+
+    --yellow: #514b2e;
+    --pink: #4b303b;
+
+    --shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
+
+    background: var(--off-white);
+    color: var(--text);
+}
+
+
+/* -------------------------
+   GENERAL
+   ------------------------- */
+
+body.dark-mode .navbar {
+    background: #14242c;
+    border-color: var(--line);
+}
+
+body.dark-mode .logo-text {
+    color: var(--navy);
+}
+
+body.dark-mode .logo-mark {
+    background: var(--baby-blue);
+    border-color: #42768d;
+    color: #dff5ff;
+}
+
+body.dark-mode .nav-link {
+    color: var(--muted);
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link.active {
+    color: var(--dark-blue);
+    background: var(--light-blue);
+}
+
+
+/* -------------------------
+   BUTTONS
+   ------------------------- */
+
+body.dark-mode .btn-secondary {
+    background: #1b303a;
+    border-color: #416574;
+    color: var(--dark-blue);
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: #243e49;
+}
+
+body.dark-mode .btn-ghost {
+    color: var(--muted);
+}
+
+
+/* -------------------------
+   SECTIONS
+   ------------------------- */
+
+body.dark-mode .how-it-works {
+    background: #14242c;
+}
+
+body.dark-mode .featured {
+    background: #101c22;
+}
+
+body.dark-mode .cta {
+    background: #14242c;
+}
+
+
+/* -------------------------
+   STEP CARDS
+   ------------------------- */
+
+body.dark-mode .step-card {
+    background: #14242c;
+    border-color: var(--line);
+}
+
+body.dark-mode .step-card:hover {
+    background: #1b303a;
+}
+
+
+/* -------------------------
+   COLLABORATION CARDS
+   ------------------------- */
+
+body.dark-mode .collaboration-card {
+    background: #182a33;
+    border-color: var(--line);
+    box-shadow: none;
+}
+
+body.dark-mode .collaboration-card:hover {
+    box-shadow: var(--shadow);
+}
+
+body.dark-mode .collaboration-icon {
+    background: #1d3845;
+    border-color: #31596b;
+    color: var(--dark-blue);
+}
+
+body.dark-mode .category-tag {
+    background: #20333c;
+    border-color: #354e59;
+    color: #aec0c8;
+}
+
+body.dark-mode .status-badge {
+    background: var(--green-bg);
+    color: #8bcba6;
+}
+
+
+/* -------------------------
+   CTA
+   ------------------------- */
+
+body.dark-mode .cta-box {
+    background: #254b5d;
+    border-color: #386b82;
+}
+
+body.dark-mode .cta-box h2 {
+    color: #e4f6fc;
+}
+
+body.dark-mode .cta-box p {
+    color: #b6d0da;
+}
+
+body.dark-mode .cta-box .btn-primary {
+    background: #dff5ff;
+    border-color: #dff5ff;
+    color: #285d76;
+}
+
+
+/* -------------------------
+   FOOTER
+   ------------------------- */
+
+body.dark-mode .footer {
+    background: #0b171d;
+}
+
+
+/* -------------------------
+   FORM ELEMENTS
+   ------------------------- */
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: #182a33;
+    color: #dcecf2;
+    border-color: #3a5662;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #8299a4;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+    border-color: var(--blue);
+}
+
+
+/* -------------------------
+   MOBILE BUTTON
+   ------------------------- */
+
+body.dark-mode .mobile-menu-button {
+    background: #182a33;
+    border-color: var(--line);
+    color: var(--dark-blue);
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+    width: 38px;
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 5px;
+
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+
+    color: var(--dark-blue);
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--light-blue);
+    transform: translateY(-1px);
+}
+
+body.dark-mode .theme-toggle {
+    background: #1b303a;
+    border-color: #416574;
+    color: #ffe69a;
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: #243e49;
+}
