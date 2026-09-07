@@ -1,7 +1,7 @@
-package dao;
+package model.dao;
 
 import model.Application;
-import util.DBConnection;
+import org.example.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,8 @@ public class ApplicationDAO implements ApplicationDAOInterface {
 
     @Override
     public boolean apply(Application application) {
-        String sql = "INSERT INTO application (collabId, applicantId, pitchText) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO applications " +
+                "(collab_id, applicant_id, pitch_text) VALUES (?, ?, ?)";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -35,7 +36,7 @@ public class ApplicationDAO implements ApplicationDAOInterface {
     public List<Application> getApplicationsByCollaboration(int collabId) {
         List<Application> applications = new ArrayList<>();
 
-        String sql = "SELECT * FROM application WHERE collabId = ?";
+        String sql = "SELECT * FROM applications WHERE collab_id = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -46,10 +47,10 @@ public class ApplicationDAO implements ApplicationDAOInterface {
 
             while (rs.next()) {
                 applications.add(new Application(
-                    rs.getInt("applicationId"),
-                    rs.getInt("collabId"),
-                    rs.getInt("applicantId"),
-                    rs.getString("pitchText")
+                        rs.getInt("application_id"),
+                        rs.getInt("collab_id"),
+                        rs.getInt("applicant_id"),
+                        rs.getString("pitch_text")
                 ));
             }
 
@@ -64,7 +65,7 @@ public class ApplicationDAO implements ApplicationDAOInterface {
     public List<Application> getApplicationsByApplicant(int applicantId) {
         List<Application> applications = new ArrayList<>();
 
-        String sql = "SELECT * FROM application WHERE applicantId = ?";
+        String sql = "SELECT * FROM applications WHERE applicant_id = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -75,10 +76,10 @@ public class ApplicationDAO implements ApplicationDAOInterface {
 
             while (rs.next()) {
                 applications.add(new Application(
-                    rs.getInt("applicationId"),
-                    rs.getInt("collabId"),
-                    rs.getInt("applicantId"),
-                    rs.getString("pitchText")
+                        rs.getInt("application_id"),
+                        rs.getInt("collab_id"),
+                        rs.getInt("applicant_id"),
+                        rs.getString("pitch_text")
                 ));
             }
 

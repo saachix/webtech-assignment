@@ -1,6 +1,6 @@
-package dao;
+package model.dao;
 
-import util.DBConnection;
+import org.example.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ public class VoteDAO implements VoteDAOInterface {
 
     @Override
     public boolean hasUserVoted(int collabId, int voterId) {
-        String sql = "SELECT * FROM vote WHERE collabId = ? AND voterId = ?";
+        String sql = "SELECT * FROM votes WHERE collab_id = ? AND voter_id = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -31,11 +31,12 @@ public class VoteDAO implements VoteDAOInterface {
 
     @Override
     public boolean addVote(int collabId, int voterId) {
+
         if (hasUserVoted(collabId, voterId)) {
             return false;
         }
 
-        String sql = "INSERT INTO vote (collabId, voterId) VALUES (?, ?)";
+        String sql = "INSERT INTO votes (collab_id, voter_id) VALUES (?, ?)";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -54,7 +55,7 @@ public class VoteDAO implements VoteDAOInterface {
 
     @Override
     public int getVoteCount(int collabId) {
-        String sql = "SELECT COUNT(*) FROM vote WHERE collabId = ?";
+        String sql = "SELECT COUNT(*) FROM votes WHERE collab_id = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
