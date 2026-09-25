@@ -154,6 +154,11 @@
                 Browse Collaborations
             </a>
 
+            <a href="${pageContext.request.contextPath}/my-collaborations"
+               class="nav-link">
+                My Collaborations
+            </a>
+
         </nav>
 
 

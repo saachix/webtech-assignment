@@ -605,6 +605,10 @@
                class="nav-link">
                 Create Collaboration
             </a>
+            <a href="${pageContext.request.contextPath}/my-collaborations"
+               class="nav-link">
+                My Collaborations
+            </a>
             <a href="${pageContext.request.contextPath}/profile"
                class="nav-link">
                 My Profile
@@ -730,9 +734,32 @@
             </div>
 
         <%
-            }
+            } else if ("application-success".equals(message)) {
         %>
 
+            <div class="message success-message">
+                &#10003; Application submitted successfully!
+            </div>
+
+        <%
+            } else if ("already-applied".equals(message)) {
+        %>
+
+            <div class="message error-message">
+                &#9888; You have already applied to this collaboration.
+            </div>
+
+        <%
+            } else if ("self-application".equals(message)) {
+        %>
+
+            <div class="message error-message">
+                &#9888; You cannot apply to your own collaboration.
+            </div>
+
+        <%
+            }
+        %>
 
         <!-- =========================
              FILTER BAR

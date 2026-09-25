@@ -53,6 +53,10 @@
                class="nav-link">
                 Create Collaboration
             </a>
+            <a href="${pageContext.request.contextPath}/my-collaborations"
+               class="nav-link">
+                My Collaborations
+            </a>
             <a href="${pageContext.request.contextPath}/profile"
                class="nav-link">
                 My Profile
