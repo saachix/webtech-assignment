@@ -217,26 +217,6 @@
                     action="${pageContext.request.contextPath}/create-collaboration">
 
 
-                <!-- CREATOR ID -->
-
-                <div class="form-group">
-
-                    <label for="creatorId">
-                        Creator Student ID
-                    </label>
-
-
-                    <input
-                            type="number"
-                            id="creatorId"
-                            name="creatorId"
-                            min="1"
-                            required
-                    >
-
-                </div>
-
-
                 <!-- TITLE -->
 
                 <div class="form-group">

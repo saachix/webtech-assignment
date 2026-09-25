@@ -18,6 +18,12 @@ public class ApplyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        jakarta.servlet.http.HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInStudent") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
         String collabIdParameter = request.getParameter("collabId");
 
         if (collabIdParameter == null) {
@@ -40,12 +46,17 @@ public class ApplyServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        jakarta.servlet.http.HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInStudent") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        model.Student loggedInStudent = (model.Student) session.getAttribute("loggedInStudent");
+        int applicantId = loggedInStudent.getStudentId();
+
         int collabId = Integer.parseInt(
                 request.getParameter("collabId")
-        );
-
-        int applicantId = Integer.parseInt(
-                request.getParameter("applicantId")
         );
 
         String pitchText = request.getParameter("pitchText");

@@ -24,23 +24,17 @@ public class VoteServlet extends HttpServlet {
                 request.getParameter("collabId")
         );
 
-        int voterId = Integer.parseInt(
-                request.getParameter("voterId")
-        );
+        jakarta.servlet.http.HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInStudent") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        model.Student loggedInStudent = (model.Student) session.getAttribute("loggedInStudent");
+        int voterId = loggedInStudent.getStudentId();
 
         StudentDAO studentDAO = new StudentDAO();
         VoteDAO voteDAO = new VoteDAO();
-
-        // Check whether the student exists
-        if (studentDAO.getStudentById(voterId) == null) {
-
-            response.sendRedirect(
-                    request.getContextPath()
-                            + "/collaborations?message=invalid-student"
-            );
-
-            return;
-        }
 
         // Check whether this student has already voted
         if (voteDAO.hasUserVoted(collabId, voterId)) {

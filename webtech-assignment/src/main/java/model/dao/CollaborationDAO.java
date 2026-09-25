@@ -205,4 +205,83 @@ public class CollaborationDAO implements CollaborationDAOInterface {
 
         return 0;
     }
+
+    @Override
+    public List<Collaboration> searchCollaborations(String keyword,
+                                                    String category,
+                                                    String sortBy) {
+
+        List<Collaboration> collaborations = new ArrayList<>();
+
+        boolean hasKeyword  = keyword  != null && !keyword.trim().isEmpty();
+        boolean hasCategory = category != null && !category.trim().isEmpty();
+        boolean sortByVotes = "votes".equalsIgnoreCase(sortBy);
+
+        // Build query dynamically — base always restricts to Open collaborations
+        StringBuilder sql = new StringBuilder(
+                "SELECT c.collab_id, c.creator_id, c.title, c.category, " +
+                "       c.description, c.status ");
+
+        if (sortByVotes) {
+            // JOIN votes so we can ORDER BY vote count
+            sql.append(", COUNT(v.vote_id) AS vote_count ")
+               .append("FROM collaborations c ")
+               .append("LEFT JOIN votes v ON c.collab_id = v.collab_id ");
+        } else {
+            sql.append("FROM collaborations c ");
+        }
+
+        sql.append("WHERE c.status = 'Open' ");
+
+        if (hasCategory) {
+            sql.append("AND c.category = ? ");
+        }
+
+        if (hasKeyword) {
+            sql.append("AND (c.title LIKE ? OR c.description LIKE ?) ");
+        }
+
+        if (sortByVotes) {
+            sql.append("GROUP BY c.collab_id, c.creator_id, c.title, " +
+                       "         c.category, c.description, c.status ");
+            sql.append("ORDER BY vote_count DESC ");
+        } else {
+            // Latest first — highest collab_id = most recently inserted
+            sql.append("ORDER BY c.collab_id DESC ");
+        }
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
+
+            int paramIndex = 1;
+
+            if (hasCategory) {
+                ps.setString(paramIndex++, category.trim());
+            }
+
+            if (hasKeyword) {
+                String pattern = "%" + keyword.trim() + "%";
+                ps.setString(paramIndex++, pattern);
+                ps.setString(paramIndex++, pattern);
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                collaborations.add(new Collaboration(
+                        rs.getInt("collab_id"),
+                        rs.getInt("creator_id"),
+                        rs.getString("title"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("status")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return collaborations;
+    }
 }

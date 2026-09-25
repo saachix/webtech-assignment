@@ -48,25 +48,41 @@
                 Browse Collaborations
             </a>
 
+            <% if (session.getAttribute("loggedInStudent") != null) { %>
             <a href="${pageContext.request.contextPath}/create-collaboration"
                class="nav-link">
                 Create Collaboration
             </a>
+            <a href="${pageContext.request.contextPath}/profile"
+               class="nav-link">
+                My Profile
+            </a>
+            <% } %>
 
         </nav>
 
 
         <div class="nav-actions">
 
-            <a href="#login"
+            <% if (session.getAttribute("loggedInStudent") != null) { %>
+            <a href="${pageContext.request.contextPath}/create-collaboration"
+               class="btn btn-primary">
+                Create
+            </a>
+            <a href="${pageContext.request.contextPath}/logout"
+               class="btn btn-ghost">
+                Logout
+            </a>
+            <% } else { %>
+            <a href="${pageContext.request.contextPath}/login"
                class="btn btn-ghost">
                 Login
             </a>
-
-            <a href="${pageContext.request.contextPath}/create-collaboration"
+            <a href="${pageContext.request.contextPath}/register"
                class="btn btn-primary">
-                Get Started
+                Register
             </a>
+            <% } %>
 
             <button
                     type="button"

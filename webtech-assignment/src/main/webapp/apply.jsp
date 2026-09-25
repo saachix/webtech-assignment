@@ -228,26 +228,6 @@
                 </div>
 
 
-                <!-- APPLICANT ID -->
-
-                <div class="form-group">
-
-                    <label for="applicantId">
-                        Your Student ID
-                    </label>
-
-
-                    <input
-                            type="number"
-                            id="applicantId"
-                            name="applicantId"
-                            min="1"
-                            required
-                    >
-
-                </div>
-
-
                 <!-- PITCH -->
 
                 <div class="form-group">

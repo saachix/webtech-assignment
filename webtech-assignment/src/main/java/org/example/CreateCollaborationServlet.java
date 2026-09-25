@@ -18,6 +18,12 @@ public class CreateCollaborationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        jakarta.servlet.http.HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInStudent") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
         request.getRequestDispatcher("/create-collaboration.jsp")
                 .forward(request, response);
     }
@@ -28,7 +34,15 @@ public class CreateCollaborationServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        int creatorId = Integer.parseInt(request.getParameter("creatorId"));
+        jakarta.servlet.http.HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInStudent") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        model.Student loggedInStudent = (model.Student) session.getAttribute("loggedInStudent");
+        int creatorId = loggedInStudent.getStudentId();
+
         String title = request.getParameter("title");
         String category = request.getParameter("category");
         String description = request.getParameter("description");

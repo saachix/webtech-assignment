@@ -28,7 +28,7 @@ public class StudentDAO implements StudentDAOInterface {
                         rs.getInt("student_id"),
                         rs.getString("name"),
                         rs.getString("email"),
-                        null
+                        rs.getString("password")
                 );
             }
 
@@ -55,7 +55,7 @@ public class StudentDAO implements StudentDAOInterface {
                         rs.getInt("student_id"),
                         rs.getString("name"),
                         rs.getString("email"),
-                        null
+                        rs.getString("password")
                 );
 
                 students.add(student);
@@ -69,7 +69,52 @@ public class StudentDAO implements StudentDAOInterface {
     }
 
     @Override
-    public Student login(String email, String password) {
+    public Student getStudentByEmail(String email) {
+        String sql = "SELECT * FROM students WHERE email = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Student(
+                        rs.getInt("student_id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
+    }
+
+    @Override
+    public Student login(String email, String password) {
+        Student student = getStudentByEmail(email);
+        if (student != null && student.getPassword() != null) {
+            if (org.example.PasswordUtil.checkPassword(password, student.getPassword())) {
+                // Do not return password to the presentation layer
+                student.setPassword(null);
+                return student;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean register(Student student) {
+        String sql = "INSERT INTO students (name, email, password) VALUES (?, ?, ?)";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, student.getName());
+            ps.setString(2, student.getEmail());
+            ps.setString(3, org.example.PasswordUtil.hashPassword(student.getPassword()));
+            
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
