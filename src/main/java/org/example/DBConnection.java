@@ -6,12 +6,33 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String URL =
-            "jdbc:mysql://localhost:3306/student_creator_hub";
+    private static final String URL;
+    private static final String USER;
+    private static final String PASSWORD;
 
-    private static final String USER = "root";
+    static {
+        String railwayHost = System.getenv("MYSQLHOST");
 
-    private static final String PASSWORD = "";
+        if (railwayHost != null && !railwayHost.isBlank()) {
+
+            // Railway environment
+            String port = System.getenv("MYSQLPORT");
+            String database = System.getenv("MYSQLDATABASE");
+
+            URL = "jdbc:mysql://" + railwayHost + ":" + port + "/" + database
+                    + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+
+            USER = System.getenv("MYSQLUSER");
+            PASSWORD = System.getenv("MYSQLPASSWORD");
+
+        } else {
+
+            // Local XAMPP environment
+            URL = "jdbc:mysql://localhost:3306/student_creator_hub";
+            USER = "root";
+            PASSWORD = "";
+        }
+    }
 
     public static Connection getConnection() throws SQLException {
 
